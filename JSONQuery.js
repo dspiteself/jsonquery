@@ -123,7 +123,15 @@ You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2
         var val = obj[i];
         if(!name){
           // if we don't have a name we are just getting all the properties values (.* or [*])
-          results.push(val);
+          if(val instanceof Array){
+            for(var i=0;i<val.length;i++){
+              results.push(val[i]);
+            }
+          }else{
+            results.push(val);
+          }
+          
+          
         }else if(val && typeof val == 'object'){
           
           walk(val);
